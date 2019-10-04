@@ -1,0 +1,66 @@
+<form [formGroup]="exampleForm"  (ngSubmit)="onSubmit()">
+    <fieldset>
+        <h3>Your details</h3>
+        <p [ngClass]="{ error: exampleForm.get('email').invalid && submitted }">
+            <label class='label' for='email'>
+                Email
+            </label>
+            <input type='email' id='email' name='email' formControlName="email">
+        </p>
+        <p [ngClass]="{ error: exampleForm.get('password').invalid && submitted }">
+            <label class='label' for='password'>
+                Password
+            </label>
+            <input class='error' type='password' id='password' formControlName="password">
+        </p>
+    </fieldset>
+  
+    <fieldset>
+        <h3>Your animal</h3>
+        <p [ngClass]="{ error: exampleForm.get('colour').invalid && submitted }">
+            <label class='label' for='colour'>
+                Colour
+            </label>
+            <select name='colour' id='colour' formControlName="colour">
+                <option value=''>Choose colour</option>
+                <option *ngFor="let colour of colours" value='colour'>{{ colour }}</option>
+            </select>
+        </p>
+        <p formGroupName="animal" [ngClass]="{ error: exampleForm.get('animal').invalid && submitted }">
+            <label class="label">
+                Animal
+            </label>
+  
+            <input type='checkbox' name='animal' value='bear' id='bear' formControlName="bear">
+            <label for='bear'>
+                 Bear
+            </label>
+  
+            <input type='checkbox' name='animal' value='tiger' id='tiger' formControlName="tiger">
+            <label for='tiger'>
+                Tiger
+            </label>
+  
+            <input type='checkbox' name='animal' value='snake' id='snake' formControlName="snake">
+            <label for='snake'>
+                 Snake
+            </label>
+  
+            <input type='checkbox' name='animal' value='donkey' id='donkey' formControlName="donkey">
+            <label for='donkey'>
+                 Donkey
+            </label>
+        </p>
+        <p *ngIf="tigerSelected()" [ngClass]="{ error: exampleForm.get('typeOfTiger').invalid && submitted }">
+            <label class='label' for='tiger_type'>
+                Type of tiger
+            </label>
+            <input type='text' name='tiger_type' id='tiger_type' formControlName="typeOfTiger">
+        </p>
+    </fieldset>
+    <fieldset>
+        <p>
+            <input type='submit' value='Create account'>
+        </p>
+    </fieldset>
+</form>
